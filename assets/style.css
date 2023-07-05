@@ -1030,7 +1030,7 @@ h3{
     .nav-menu{
         position: fixed;
         background: var(--color-white);
-        width: 80%;
+        width: 75%;
         height: 100%;
         top: 0;
         right: -100%;
