@@ -51,6 +51,19 @@
 
 
 
+/* =============== SCROLL BAR =============== */
+::-webkit-scrollbar{
+    width: 0.6rem;
+    background: var(--color-white);
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--color-primary);
+    border-radius: 0.5rem;
+}
+
+
+
 /* =============== RESPONSIVE TOPOGRAPHY =============== */
 @media screen and (min-width: 992px) {
     :root{
@@ -611,6 +624,27 @@ h3{
     flex: 0 0 33.33%;
     max-width: 33.33%;
     margin-bottom: var(--m-1-5);
+}
+
+.portfolio-item.hide{
+    display: none;
+}
+
+.portfolio-item.show{
+    display: block;
+    animation: showItem 0.5s ease;
+}
+
+@keyframes showItem {
+    0%{
+        transform: scale(0.6);
+        opacity: 0;
+    }
+
+    100%{
+        transform: scale(1);
+        opacity: 100%;
+    }
 }
 
 .portfolio-item-inner{

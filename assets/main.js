@@ -56,6 +56,71 @@ window.addEventListener("scroll", scrollHeader)
 
 
 
+/* =============== SCROLL SECTIONS ACTIVE LINK =============== */
+//get all sections that have an id defined
+const sections = document.querySelectorAll("section[id]");
+
+//add an event listener listening for scroll
+window.addEventListener("scroll", navHighlighter);
+
+function navHighlighter(){
+    //get current scroll position
+    let scroll = window.scrollY;
+    //now we loop through sections to get height, top and ID values for each
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 50;
+        sectionId = current.getAttribute("id");
+        
+        /* - If our current scroll position enters the space where current section on screen is, add .active class to corresponding navigation link, else remove it
+        - To know which link needs an active class, we use sectionId variable we are getting while looping through sections as a selector */
+        if(scroll > sectionTop && scroll <= sectionTop + sectionHeight){
+            document.querySelector(".nav-menu a[href*=" + sectionId + "]").classList.add("active-link");
+        }
+
+        else{
+            document.querySelector(".nav-menu a[href*=" + sectionId + "]").classList.remove("active-link");
+        }
+    })
+}
+
+
+
+/* =============== PORTFOLIO ITEM FILTER =============== */
+const filterContainer = document.querySelector(".portfolio-filter-inner"),
+      filterBtns = filterContainer.children,
+      totalFiterBtn = filterBtns.length,
+      portfolioItems = document.querySelectorAll(".portfolio-item"),
+      totalPortfolioItem = portfolioItems.length;
+
+for(let i = 0; i < totalFiterBtn; i++){
+    filterBtns[i].addEventListener("click", function() {
+        filterContainer.querySelector(".active").classList.remove("active");
+        this.classList.add("active");
+
+        const filterValue = this.getAttribute("data-filter");
+
+        for(let j = 0; j < totalPortfolioItem; j++){
+            if(filterValue === portfolioItems[j].getAttribute("data-category")){
+                portfolioItems[j].classList.remove("hide")
+                portfolioItems[j].classList.add("show")
+            }
+
+            else{
+                portfolioItems[j].classList.remove("show")
+                portfolioItems[j].classList.add("hide")
+            }
+                
+            if(filterValue === "all"){
+                portfolioItems[j].classList.remove("hide")
+                portfolioItems[j].classList.add("show")
+            }
+        }
+    });
+}
+
+
+
 /* =============== THEME/DISPLAY CUSTOMIZATION =============== */
 const theme = document.querySelector("#theme-button");
 const themeModal = document.querySelector(".customize-theme");
