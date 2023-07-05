@@ -8,11 +8,16 @@
     --header-height : 56px;
 
     /* =============== COLORS =============== */
-    --color-white: hsl(252,30%,100%);
-    --color-light: hsl(252,30%,92%);
+    --primary-color-hue: 352;
+    --dark-color-lightness: 17%;
+    --light-color-lightness: 92%;
+    --white-color-lightness: 100%;
+
+    --color-white: hsl(252,30%,var(--white-color-lightness));
+    --color-light: hsl(252,30%,var(--light-color-lightness));
     --color-grey: hsl(252,15%,65%);
-    --color-primary: hsl(352,75%,60%);
-    --color-dark: hsl(252,30%,17%);
+    --color-primary: hsl(var(--primary-color-hue),75%,60%);
+    --color-dark: hsl(252,30%,var(--dark-color-lightness));
 
     /* =============== FONT AND TOPOGRAPHY =============== */
     --body-font: 'Roboto Condensed', sans-serif;
@@ -64,6 +69,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 body,
@@ -160,7 +169,7 @@ h3{
 
 /* =============== NAV =============== */
 .nav{
-    height: calc(var(--header-height) + 1.5rem);
+    height: calc(var(--header-height) + 1rem);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -244,6 +253,10 @@ h3{
     height: 0.3rem;
     background-color: var(--color-primary);
     border-radius: 50%;
+}
+
+.scroll-header{
+    box-shadow: 0 1px 4px rgba(165, 125, 125, 0.02);
 }
 
 
@@ -574,6 +587,7 @@ h3{
     margin: 0 var(--m-0-75);
     cursor: pointer;
     white-space: nowrap;
+    color: var(--color-dark);
     transition: 0.3s;
 }
 
@@ -906,8 +920,8 @@ h3{
 }
 
 .customize-theme .choose-bg .bg-1{
-    background: var(--color-light);
-    color: var(--color-dark);
+    background: hsl(252,30%,92%);;
+    color: hsl(252,30%,17%);
 }
 
 .customize-theme .choose-bg .bg-2{
@@ -985,13 +999,14 @@ h3{
         width: 80%;
         height: 100%;
         top: 0;
-        right: 100%;
+        right: -100%;
         padding: 4rem 0 0 3rem;
         border-radius: 1rem 0 0 1rem;
         z-index: 100;
         transition: 0.3s;
     }
 
+    /* SHOW MENU */
     .show-menu{
         right: 0;
     }
